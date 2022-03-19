@@ -1,13 +1,14 @@
 pipeline{
-
-  agent any
-
+ agent any
+   enviroment{
+      path = "/usr/share/maven/bin:$PATH"
+         }
     stages{
-      stage("Github checkout"){
-	  steps{
-        git credentialsId: 'github', url: 'https://github.com/amit-burnwal/samplejavadevops'
-            }
-			
-           }
+
+     stage('Build'){
+      steps{
+       sh 'mvn clean package'
           }
          }
+       }
+     }
